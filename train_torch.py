@@ -57,9 +57,7 @@ class Net(nn.Module):
         x = F.relu(self.fc1(x))
         x = F.relu(self.fc2(x))
         x = self.fc3(x)
-        
-        return x
-        # return F.log_softmax(x, dim=1)
+        return F.log_softmax(x, dim=1)
     
 model = Net().to(device)
 
@@ -84,8 +82,8 @@ for epoch in range(10):  # loop over the dataset multiple times
 
         # print statistics
         running_loss += loss.item()
-        if i % 100 == 99:    # print every 10 mini-batches
-            print(f'[{epoch + 1}, {i + 1:5d}] loss: {running_loss / 100:.3f}')
+        if i % BATCH_SIZE == BATCH_SIZE - 1:    # print every 10 mini-batches
+            print(f'[{epoch + 1}, {i + 1:5d}] loss: {running_loss / BATCH_SIZE:.3f}')
             running_loss = 0.0
 
 print('Finished Training')
