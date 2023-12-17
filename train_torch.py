@@ -9,8 +9,6 @@ import torch.optim as optim
 
 import torchvision.transforms.v2 as transforms
 
-from dataset import load_dataset_torch
-
 base_dir = './datasets'
 
 train_dir = os.path.join(base_dir, 'train/')
